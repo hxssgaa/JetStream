@@ -376,7 +376,7 @@ class TikToken(tokenizer_api.Tokenizer):
     max_prefill_length = kwargs.pop("max_prefill_length", None)
     jax_padding = kwargs.pop("jax_padding", True)
 
-    tokens = np.array(self.tokenizer.encode(s, bos=False, eos=False))
+    tokens = np.array(self.tokenizer.encode(s, bos=False, eos=False, allowed_special=set(self.tokenizer.special_tokens)))
 
     tokens, true_length = pad_tokens(
         tokens,
